@@ -11,10 +11,10 @@ const footerLinks = {
     { name: "Agents", href: "#integrations" },
   ],
   Developers: [
-    { name: "Documentation", href: "https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app" },
-    { name: "API Reference", href: "https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app" },
+    { name: "Documentation", href: "https://docs.atelai.org" },
+    { name: "API Reference", href: "https://docs.atelai.org" },
     { name: "SDK", href: "https://www.npmjs.com/package/@lawrenceliang-btc/atel-sdk" },
-    { name: "Status", href: "https://atel-dashboard-gbylutr21-rikhuan93-gmailcoms-projects.vercel.app/dashboard" },
+    { name: "Status", href: "https://app.atelai.org/dashboard" },
   ],
   Company: [
     { name: "About", href: "/about" },

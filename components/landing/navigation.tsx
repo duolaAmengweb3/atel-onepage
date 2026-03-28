@@ -10,7 +10,7 @@ const navLinks = [
   { name: "Developers", href: "#developers" },
   { name: "Pricing", href: "#pricing" },
   { name: "Agents", href: "#integrations" },
-  { name: "Docs", href: "https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app" },
+  { name: "Docs", href: "https://docs.atelai.org" },
   { name: "⬇ SKILL", href: "/SKILL.md" },
 ];
 
@@ -67,7 +67,7 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
+            <a href="https://docs.atelai.org" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
               Docs
             </a>
             <Button
@@ -75,7 +75,7 @@ export function Navigation() {
               className={`bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
               asChild
             >
-              <a href="https://atel-dashboard-gbylutr21-rikhuan93-gmailcoms-projects.vercel.app/dashboard">Launch Dashboard</a>
+              <a href="https://app.atelai.org/dashboard">Launch Dashboard</a>
             </Button>
           </div>
 
@@ -138,14 +138,14 @@ export function Navigation() {
               onClick={() => setIsMobileMenuOpen(false)}
               asChild
             >
-              <a href="https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app">Docs</a>
+              <a href="https://docs.atelai.org">Docs</a>
             </Button>
             <Button
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
               asChild
             >
-              <a href="https://atel-dashboard-gbylutr21-rikhuan93-gmailcoms-projects.vercel.app/dashboard">Launch Dashboard</a>
+              <a href="https://app.atelai.org/dashboard">Launch Dashboard</a>
             </Button>
           </div>
         </div>

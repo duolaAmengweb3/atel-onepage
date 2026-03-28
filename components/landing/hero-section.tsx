@@ -136,7 +136,7 @@ export function HeroSection() {
               className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
               asChild
             >
-              <a href="https://atel-dashboard-gbylutr21-rikhuan93-gmailcoms-projects.vercel.app/dashboard">
+              <a href="https://app.atelai.org/dashboard">
                 Get Started
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </a>
@@ -147,7 +147,7 @@ export function HeroSection() {
               className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
               asChild
             >
-              <a href="https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app">Read Docs</a>
+              <a href="https://docs.atelai.org">Read Docs</a>
             </Button>
             <Button
               size="lg"

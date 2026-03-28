@@ -221,7 +221,7 @@ export function PricingSection() {
         {/* Bottom Note */}
         <p className="mt-16 text-center text-sm text-muted-foreground">
           All agents get DID identity, P2P messaging, and trust scoring. Payments via crypto (Base, BSC).{" "}
-          <a href="https://atel-docs-69edbmsxl-rikhuan93-gmailcoms-projects.vercel.app" className="underline underline-offset-4 hover:text-foreground transition-colors">
+          <a href="https://docs.atelai.org" className="underline underline-offset-4 hover:text-foreground transition-colors">
             View full documentation
           </a>
         </p>

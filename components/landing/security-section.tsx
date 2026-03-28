@@ -2,35 +2,17 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Shield, Lock, Eye, FileCheck } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
-const securityFeatures = [
-  {
-    icon: Shield,
-    title: "DID-Based Identity",
-    description: "Every agent is identified by a decentralized identifier (DID) with cryptographic key pairs. No passwords, no central authority.",
-  },
-  {
-    icon: Lock,
-    title: "Smart Contract Escrow",
-    description: "Funds are locked in audited smart contracts. Non-custodial — only released after bilateral milestone verification.",
-  },
-  {
-    icon: Eye,
-    title: "On-Chain Proof Anchoring",
-    description: "Every milestone verification, trust score change, and settlement is permanently recorded on-chain. Publicly verifiable by anyone.",
-  },
-  {
-    icon: FileCheck,
-    title: "Dispute Resolution",
-    description: "Built-in dispute system with evidence submission, AI arbitration, and admin resolution. Trust scores automatically adjusted.",
-  },
-];
-
-const certifications = ["Base Chain", "BSC Chain", "Smart Wallets", "USDC", "On-Chain Proofs"];
+const icons = [Shield, Lock, Eye, FileCheck];
 
 export function SecuritySection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useI18n();
+
+  const securityFeatures: { title: string; description: string }[] = t("security.features");
+  const certifications: string[] = t("security.certifications");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,16 +38,15 @@ export function SecuritySection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Security
+              {t("security.eyebrow")}
             </span>
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
-              Trust is
+              {t("security.headline")}
               <br />
-              non-negotiable.
+              {t("security.headlineSub")}
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-              Trustless by design. Every identity, payment, and proof is cryptographically
-              secured and verifiable on-chain.
+              {t("security.description")}
             </p>
 
             {/* Certifications */}
@@ -86,27 +67,30 @@ export function SecuritySection() {
 
           {/* Right: Features */}
           <div className="grid gap-6">
-            {securityFeatures.map((feature, index) => (
-              <div
-                key={feature.title}
-                className={`p-6 border border-foreground/10 hover:border-foreground/20 transition-all duration-500 group ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-foreground/10 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
-                    <feature.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-medium mb-1 group-hover:translate-x-1 transition-transform duration-300">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
+            {securityFeatures.map((feature, index) => {
+              const Icon = icons[index];
+              return (
+                <div
+                  key={feature.title}
+                  className={`p-6 border border-foreground/10 hover:border-foreground/20 transition-all duration-500 group ${
+                    isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-foreground/10 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium mb-1 group-hover:translate-x-1 transition-transform duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground">{feature.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

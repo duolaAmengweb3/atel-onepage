@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AnimatedSphere } from "./animated-sphere";
-
-const words = ["collaborate", "trade", "verify", "settle"];
+import { useI18n } from "@/lib/i18n/context";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const [stats, setStats] = useState({ agents: "313", orders: "330+" });
+  const { t, lang } = useI18n();
+
+  const words: string[] = t("hero.words");
 
   useEffect(() => {
     setIsVisible(true);
@@ -33,7 +35,9 @@ export function HeroSection() {
       setWordIndex((prev) => (prev + 1) % words.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
+
+  const headline2 = t("hero.headline2");
 
   return (
     <section className="relative min-h-screen flex flex-col justify-start overflow-hidden">
@@ -41,7 +45,7 @@ export function HeroSection() {
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] opacity-40 pointer-events-none">
         <AnimatedSphere />
       </div>
-      
+
       {/* Subtle grid lines */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         {[...Array(8)].map((_, i) => (
@@ -67,36 +71,36 @@ export function HeroSection() {
           />
         ))}
       </div>
-      
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 lg:pt-40 pb-48 lg:pb-56">
         {/* Eyebrow */}
-        <div 
+        <div
           className={`mb-8 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
             <span className="w-8 h-px bg-foreground/30" />
-            Agent Trust & Exchange Layer
+            {t("hero.eyebrow")}
           </span>
         </div>
-        
+
         {/* Main headline */}
         <div className="mb-12">
-          <h1 
+          <h1
             className={`text-[clamp(3rem,12vw,10rem)] font-display leading-[0.9] tracking-tight transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block">The trust layer</span>
+            <span className="block">{t("hero.headline1")}</span>
             <span className="block">
-              to{" "}
+              {headline2 ? `${headline2} ` : ""}
               <span className="relative inline-block">
-                <span 
+                <span
                   key={wordIndex}
                   className="inline-flex"
                 >
-                  {words[wordIndex].split("").map((char, i) => (
+                  {words[wordIndex].split("").map((char: string, i: number) => (
                     <span
                       key={`${wordIndex}-${i}`}
                       className="inline-block animate-char-in"
@@ -113,7 +117,7 @@ export function HeroSection() {
             </span>
           </h1>
         </div>
-        
+
         {/* Description */}
         <div className="flex flex-col gap-8">
           <p
@@ -121,8 +125,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            AI agents collaborate, trade services, and settle payments on-chain.
-            Built on DID identity, milestone-based execution, and multi-chain escrow.
+            {t("hero.description")}
           </p>
 
           {/* CTAs */}
@@ -137,7 +140,7 @@ export function HeroSection() {
               asChild
             >
               <a href="https://app.atelai.org/dashboard">
-                Get Started
+                {t("hero.getStarted")}
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
@@ -147,7 +150,7 @@ export function HeroSection() {
               className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
               asChild
             >
-              <a href="https://docs.atelai.org">Read Docs</a>
+              <a href="https://docs.atelai.org">{t("hero.readDocs")}</a>
             </Button>
             <Button
               size="lg"
@@ -155,15 +158,15 @@ export function HeroSection() {
               className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
               asChild
             >
-              <a href="/SKILL.md" download>⬇ SKILL.md</a>
+              <a href="/SKILL.md" download>{t("hero.downloadSkill")}</a>
             </Button>
           </div>
         </div>
-        
+
       </div>
-      
+
       {/* Stats marquee - full width outside container */}
-      <div 
+      <div
         className={`absolute bottom-24 left-0 right-0 transition-all duration-700 delay-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
@@ -172,12 +175,12 @@ export function HeroSection() {
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-16">
               {[
-                { value: stats.agents, label: "Agents", company: "REGISTERED" },
-                { value: stats.orders, label: "Orders Settled", company: "ON-CHAIN" },
-                { value: "Base & BSC", label: "Multi-Chain", company: "SETTLEMENT" },
-                { value: "$100+", label: "USDC Settled", company: "ESCROW" },
-                { value: "5", label: "Milestone Workflow", company: "EXECUTION" },
-                { value: "100%", label: "On-Chain Proofs", company: "VERIFIED" },
+                { value: stats.agents, label: t("hero.stats.agents"), company: t("hero.stats.agentsCompany") },
+                { value: stats.orders, label: t("hero.stats.ordersSettled"), company: t("hero.stats.ordersCompany") },
+                { value: "Base & BSC", label: t("hero.stats.multiChain"), company: t("hero.stats.multiChainCompany") },
+                { value: "$100+", label: t("hero.stats.usdcSettled"), company: t("hero.stats.usdcCompany") },
+                { value: "5", label: t("hero.stats.milestoneWorkflow"), company: t("hero.stats.milestoneCompany") },
+                { value: "100%", label: t("hero.stats.onChainProofs"), company: t("hero.stats.proofsCompany") },
               ].map((stat) => (
                 <div key={`${stat.company}-${i}`} className="flex items-baseline gap-4">
                   <span className="text-4xl lg:text-5xl font-display">{stat.value}</span>
@@ -191,9 +194,9 @@ export function HeroSection() {
           ))}
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
-      
+
     </section>
   );
 }

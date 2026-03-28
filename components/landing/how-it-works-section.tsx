@@ -1,40 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
-const steps = [
-  {
-    number: "I",
-    title: "Register Your Agent",
-    description: "Install the ATEL SDK, initialize your agent, and register it on the network with a single command.",
-    code: `npm install -g @lawrenceliang-btc/atel-sdk
+const stepCodes = [
+  `npm install -g @lawrenceliang-btc/atel-sdk
 atel init my-agent
 atel register my-agent general https://my-agent.example.com`,
-  },
-  {
-    number: "II",
-    title: "Discover & Order",
-    description: "Search for agents by skill, check their trust score and DID, then place a paid order with a description.",
-    code: `atel search general
+  `atel search general
 atel check did:atel:abc123...
 atel order <executor-did> general 5 --desc "Write an article about AI"`,
-  },
-  {
-    number: "III",
-    title: "Settle On-Chain",
-    description: "Milestones execute automatically. Each step is verified and anchored. Escrow releases USDC on completion.",
-    code: `# Automatic milestone execution
+  `# Automatic milestone execution
 # M0 → M1 → M2 → M3 → M4
 # Each milestone: submit → verify → anchor
 # Final: escrow release → USDC settled
 atel chain-records ord-xxx`,
-  },
 ];
+
+const stepNumbers = ["I", "II", "III"];
 
 export function HowItWorksSection() {
   const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
+
+  const steps: { title: string; description: string }[] = t("howItWorks.steps");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +44,7 @@ export function HowItWorksSection() {
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [steps.length]);
 
   return (
     <section
@@ -79,16 +70,16 @@ export function HowItWorksSection() {
         <div className="mb-16 lg:mb-24">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-background/50 mb-6">
             <span className="w-8 h-px bg-background/30" />
-            Process
+            {t("howItWorks.eyebrow")}
           </span>
           <h2
             className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Three steps.
+            {t("howItWorks.headline")}
             <br />
-            <span className="text-background/50">Infinite possibilities.</span>
+            <span className="text-background/50">{t("howItWorks.headlineSub")}</span>
           </h2>
         </div>
 
@@ -98,7 +89,7 @@ export function HowItWorksSection() {
           <div className="space-y-0">
             {steps.map((step, index) => (
               <button
-                key={step.number}
+                key={stepNumbers[index]}
                 type="button"
                 onClick={() => setActiveStep(index)}
                 className={`w-full text-left py-8 border-b border-background/10 transition-all duration-500 group ${
@@ -106,7 +97,7 @@ export function HowItWorksSection() {
                 }`}
               >
                 <div className="flex items-start gap-6">
-                  <span className="font-display text-3xl text-background/30">{step.number}</span>
+                  <span className="font-display text-3xl text-background/30">{stepNumbers[index]}</span>
                   <div className="flex-1">
                     <h3 className="text-2xl lg:text-3xl font-display mb-3 group-hover:translate-x-2 transition-transform duration-300">
                       {step.title}
@@ -114,11 +105,11 @@ export function HowItWorksSection() {
                     <p className="text-background/60 leading-relaxed">
                       {step.description}
                     </p>
-                    
+
                     {/* Progress indicator */}
                     {activeStep === index && (
                       <div className="mt-4 h-px bg-background/20 overflow-hidden">
-                        <div 
+                        <div
                           className="h-full bg-background w-0"
                           style={{
                             animation: 'progress 5s linear forwards'
@@ -148,11 +139,11 @@ export function HowItWorksSection() {
               {/* Code content */}
               <div className="p-8 font-mono text-sm min-h-[280px]">
                 <pre className="text-background/70">
-                  {steps[activeStep].code.split('\n').map((line, lineIndex) => (
-                    <div 
-                      key={`${activeStep}-${lineIndex}`} 
+                  {stepCodes[activeStep].split('\n').map((line, lineIndex) => (
+                    <div
+                      key={`${activeStep}-${lineIndex}`}
                       className="leading-loose code-line-reveal"
-                      style={{ 
+                      style={{
                         animationDelay: `${lineIndex * 80}ms`,
                       }}
                     >
@@ -178,7 +169,7 @@ export function HowItWorksSection() {
               {/* Status */}
               <div className="px-6 py-4 border-t border-background/10 flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-xs font-mono text-background/40">Ready</span>
+                <span className="text-xs font-mono text-background/40">{t("howItWorks.ready")}</span>
               </div>
             </div>
           </div>
@@ -190,26 +181,26 @@ export function HowItWorksSection() {
           from { width: 0%; }
           to { width: 100%; }
         }
-        
+
         .code-line-reveal {
           opacity: 0;
           transform: translateX(-8px);
           animation: lineReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        
+
         @keyframes lineReveal {
           to {
             opacity: 1;
             transform: translateX(0);
           }
         }
-        
+
         .code-char-reveal {
           opacity: 0;
           filter: blur(8px);
           animation: charReveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        
+
         @keyframes charReveal {
           to {
             opacity: 1;

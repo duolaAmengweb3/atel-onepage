@@ -2,47 +2,50 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedWave } from "./animated-wave";
-
-const footerLinks = {
-  Product: [
-    { name: "Features", href: "#features" },
-    { name: "How it Works", href: "#how-it-works" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Agents", href: "#integrations" },
-  ],
-  Developers: [
-    { name: "Documentation", href: "https://docs.atelai.org" },
-    { name: "API Reference", href: "https://docs.atelai.org" },
-    { name: "SDK", href: "https://www.npmjs.com/package/@lawrenceliang-btc/atel-sdk" },
-    { name: "Status", href: "https://app.atelai.org/dashboard" },
-  ],
-  Company: [
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "https://x.com/atel_ai" },
-    { name: "GitHub", href: "https://github.com/LawrenceLiang-BTC/atel-sdk" },
-    { name: "Contact", href: "https://x.com/atel_ai" },
-  ],
-  Legal: [
-    { name: "Privacy", href: "/privacy" },
-    { name: "Terms", href: "/terms" },
-    { name: "Security", href: "#security" },
-  ],
-};
-
-const socialLinks = [
-  { name: "Twitter", href: "https://x.com/atel_ai" },
-  { name: "GitHub", href: "https://github.com/LawrenceLiang-BTC/atel-sdk" },
-  { name: "LinkedIn", href: "#" },
-];
+import { useI18n } from "@/lib/i18n/context";
 
 export function FooterSection() {
+  const { t } = useI18n();
+
+  const footerLinks: Record<string, { name: string; href: string }[]> = {
+    [t("footer.product")]: [
+      { name: t("footer.links.features"), href: "#features" },
+      { name: t("footer.links.howItWorks"), href: "#how-it-works" },
+      { name: t("footer.links.pricing"), href: "#pricing" },
+      { name: t("footer.links.agents"), href: "#integrations" },
+    ],
+    [t("footer.developersTitle")]: [
+      { name: t("footer.links.documentation"), href: "https://docs.atelai.org" },
+      { name: t("footer.links.apiReference"), href: "https://docs.atelai.org" },
+      { name: t("footer.links.sdk"), href: "https://www.npmjs.com/package/@lawrenceliang-btc/atel-sdk" },
+      { name: t("footer.links.status"), href: "https://app.atelai.org/dashboard" },
+    ],
+    [t("footer.company")]: [
+      { name: t("footer.links.about"), href: "/about" },
+      { name: t("footer.links.blog"), href: "https://x.com/atel_ai" },
+      { name: t("footer.links.github"), href: "https://github.com/LawrenceLiang-BTC/atel-sdk" },
+      { name: t("footer.links.contact"), href: "https://x.com/atel_ai" },
+    ],
+    [t("footer.legal")]: [
+      { name: t("footer.links.privacy"), href: "/privacy" },
+      { name: t("footer.links.terms"), href: "/terms" },
+      { name: t("footer.links.security"), href: "#security" },
+    ],
+  };
+
+  const socialLinks = [
+    { name: t("footer.social.twitter"), href: "https://x.com/atel_ai" },
+    { name: t("footer.social.github"), href: "https://github.com/LawrenceLiang-BTC/atel-sdk" },
+    { name: t("footer.social.linkedin"), href: "#" },
+  ];
+
   return (
     <footer className="relative border-t border-foreground/10">
       {/* Animated wave background */}
       <div className="absolute inset-0 h-64 opacity-20 pointer-events-none overflow-hidden">
         <AnimatedWave />
       </div>
-      
+
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Main Footer */}
         <div className="py-16 lg:py-24">
@@ -54,7 +57,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-xs">
-                Agent Trust & Exchange Layer. The protocol for AI agent collaboration with on-chain settlement.
+                {t("footer.brand")}
               </p>
 
               {/* Social Links */}
@@ -96,13 +99,13 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            2026 ATEL. All rights reserved.
+            {t("footer.copyright")}
           </p>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500" />
-              All systems operational
+              {t("footer.allSystems")}
             </span>
           </div>
         </div>

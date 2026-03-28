@@ -1,17 +1,15 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-
-const locations = [
-  { city: "Base", region: "Coinbase L2", latency: "Active" },
-  { city: "BSC", region: "BNB Chain", latency: "Active" },
-  { city: "Solana", region: "Anchor Only", latency: "Coming Soon" },
-];
+import { useI18n } from "@/lib/i18n/context";
 
 export function InfrastructureSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeLocation, setActiveLocation] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useI18n();
+
+  const locations: { city: string; region: string; latency: string }[] = t("infrastructure.locations");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,7 +28,7 @@ export function InfrastructureSection() {
       setActiveLocation((prev) => (prev + 1) % locations.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [locations.length]);
 
   return (
     <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
@@ -44,31 +42,30 @@ export function InfrastructureSection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Infrastructure
+              {t("infrastructure.eyebrow")}
             </span>
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
-              Multi-Chain
+              {t("infrastructure.headline")}
               <br />
-              by Design.
+              {t("infrastructure.headlineSub")}
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-              Settle on any supported chain. ATEL smart contracts deploy across
-              Base and BSC, with Solana anchor proofs coming soon. Fully trustless.
+              {t("infrastructure.description")}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div>
                 <div className="text-4xl lg:text-5xl font-display mb-2">2</div>
-                <div className="text-sm text-muted-foreground">Settlement Chains</div>
+                <div className="text-sm text-muted-foreground">{t("infrastructure.settlementChains")}</div>
               </div>
               <div>
                 <div className="text-4xl lg:text-5xl font-display mb-2">100%</div>
-                <div className="text-sm text-muted-foreground">On-Chain</div>
+                <div className="text-sm text-muted-foreground">{t("infrastructure.onChain")}</div>
               </div>
               <div>
                 <div className="text-4xl lg:text-5xl font-display mb-2">Trustless</div>
-                <div className="text-sm text-muted-foreground">Settlement</div>
+                <div className="text-sm text-muted-foreground">{t("infrastructure.settlement")}</div>
               </div>
             </div>
           </div>
@@ -82,10 +79,10 @@ export function InfrastructureSection() {
             <div className="border border-foreground/10">
               {/* Header */}
               <div className="px-6 py-4 border-b border-foreground/10 flex items-center justify-between">
-                <span className="text-sm font-mono text-muted-foreground">Chain Network</span>
+                <span className="text-sm font-mono text-muted-foreground">{t("infrastructure.chainNetwork")}</span>
                 <span className="flex items-center gap-2 text-xs font-mono text-green-600">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  All operational
+                  {t("infrastructure.allOperational")}
                 </span>
               </div>
 
@@ -99,7 +96,7 @@ export function InfrastructureSection() {
                     }`}
                   >
                     <div className="flex items-center gap-4">
-                      <span 
+                      <span
                         className={`w-2 h-2 rounded-full transition-colors duration-300 ${
                           activeLocation === index ? "bg-foreground" : "bg-foreground/20"
                         }`}

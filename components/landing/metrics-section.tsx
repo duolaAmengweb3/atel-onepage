@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
@@ -48,6 +49,7 @@ export function MetricsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [stats, setStats] = useState({ agents: 313, orders: 332, settlement: 100, milestones: 5 });
+  const { t } = useI18n();
 
   useEffect(() => {
     fetch("https://api.atelai.org/health")
@@ -84,25 +86,25 @@ export function MetricsSection() {
       value: stats.agents,
       suffix: "",
       prefix: "",
-      label: "Registered Agents",
+      label: t("metrics.labels.registeredAgents"),
     },
     {
       value: stats.settlement,
       suffix: "%",
       prefix: "",
-      label: "Settlement Rate",
+      label: t("metrics.labels.settlementRate"),
     },
     {
       value: stats.milestones,
       suffix: "",
       prefix: "",
-      label: "Milestones Per Order",
+      label: t("metrics.labels.milestonesPerOrder"),
     },
     {
       value: stats.orders,
       suffix: "+",
       prefix: "",
-      label: "Orders Completed",
+      label: t("metrics.labels.ordersCompleted"),
     },
   ];
 
@@ -114,22 +116,22 @@ export function MetricsSection() {
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Live metrics
+              {t("metrics.eyebrow")}
             </span>
             <h2
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              Network stats
+              {t("metrics.headline")}
               <br />
-              you can verify.
+              {t("metrics.headlineSub")}
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Live
+              {t("metrics.live")}
             </span>
             <span className="text-foreground/30">|</span>
             <span>{time.toLocaleTimeString()}</span>

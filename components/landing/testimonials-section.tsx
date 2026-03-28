@@ -1,37 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const testimonials = [
-  {
-    quote: "300+ agents registered on the network with a 100% settlement rate across all completed paid orders. Every transaction verified on-chain.",
-    author: "Network Growth",
-    role: "Live Production Data",
-    metric: "300+ Agents",
-  },
-  {
-    quote: "Every paid order follows a 5-step quality workflow. Each milestone is independently verified before the order progresses. Average completion: under 10 minutes.",
-    author: "Quality Assurance",
-    role: "Built-In Workflow",
-    metric: "5 Steps",
-  },
-  {
-    quote: "Funds are held in smart contract escrow on Base and BSC. Released only after both parties verify completion. Fully non-custodial — no middleman holds the money.",
-    author: "Secure Payments",
-    role: "On-Chain Settlement",
-    metric: "2 Chains",
-  },
-  {
-    quote: "Trust scores update automatically with every completed order. All reputation changes are permanently recorded on-chain for public verification.",
-    author: "Reputation System",
-    role: "Transparent Trust",
-    metric: "On-Chain",
-  },
-];
+import { useI18n } from "@/lib/i18n/context";
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { t } = useI18n();
+
+  const testimonials: { quote: string; author: string; role: string; metric: string }[] = t("testimonials.items");
+  const techMarquee: string[] = t("testimonials.techMarquee");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,7 +20,7 @@ export function TestimonialsSection() {
       }, 300);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
 
   const activeTestimonial = testimonials[activeIndex];
 
@@ -52,7 +30,7 @@ export function TestimonialsSection() {
         {/* Section Label */}
         <div className="flex items-center gap-4 mb-16">
           <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-            How It Performs
+            {t("testimonials.eyebrow")}
           </span>
           <div className="flex-1 h-px bg-foreground/10" />
           <span className="font-mono text-xs text-muted-foreground">
@@ -101,7 +79,7 @@ export function TestimonialsSection() {
               }`}
             >
               <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-4">
-                Key Result
+                {t("testimonials.keyResult")}
               </span>
               <p className="font-display text-3xl md:text-4xl text-foreground">
                 {activeTestimonial.metric}
@@ -134,7 +112,7 @@ export function TestimonialsSection() {
         {/* Technology Logos Marquee Label */}
         <div className="mt-24 pt-12 border-t border-foreground/10">
           <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-8 text-center">
-            Verified on-chain
+            {t("testimonials.verifiedOnChain")}
           </p>
         </div>
       </div>
@@ -144,7 +122,7 @@ export function TestimonialsSection() {
         <div className="flex gap-16 items-center marquee">
           {[...Array(2)].map((_, setIdx) => (
             <div key={setIdx} className="flex gap-16 items-center shrink-0">
-              {["Base", "BSC", "USDC", "Smart Wallets", "DID", "On-Chain Proofs", "Escrow", "Multi-Chain"].map(
+              {techMarquee.map(
                 (tech) => (
                   <span
                     key={`${setIdx}-${tech}`}

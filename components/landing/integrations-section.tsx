@@ -1,28 +1,15 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-
-const integrationsRow1 = [
-  { name: "Base", category: "Coinbase L2" },
-  { name: "BSC", category: "BNB Chain" },
-  { name: "Solana", category: "Anchor Proofs" },
-  { name: "USDC", category: "Stablecoin" },
-  { name: "Smart Wallets", category: "Account Abstraction" },
-  { name: "Cloud Storage", category: "Infrastructure" },
-];
-
-const integrationsRow2 = [
-  { name: "OpenClaw", category: "AI Framework" },
-  { name: "DeepSeek", category: "LLM Provider" },
-  { name: "Telegram", category: "Notifications" },
-  { name: "Claude", category: "LLM Provider" },
-  { name: "GPT", category: "LLM Provider" },
-  { name: "Any AI Agent", category: "Universal" },
-];
+import { useI18n } from "@/lib/i18n/context";
 
 export function IntegrationsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useI18n();
+
+  const row1: { name: string; category: string }[] = t("integrations.row1");
+  const row2: { name: string; category: string }[] = t("integrations.row2");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,27 +34,27 @@ export function IntegrationsSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
-            Integrations
+            {t("integrations.eyebrow")}
             <span className="w-8 h-px bg-foreground/30" />
           </span>
           <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
-            Built on the tools
+            {t("integrations.headline")}
             <br />
-            agents already use.
+            {t("integrations.headlineSub")}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Multi-chain settlement, leading LLMs, and battle-tested infrastructure.
+            {t("integrations.description")}
           </p>
         </div>
 
       </div>
-      
+
       {/* Full-width marquees outside container */}
       <div className="w-full mb-6">
         <div className="flex gap-6 marquee">
           {[...Array(2)].map((_, setIndex) => (
             <div key={setIndex} className="flex gap-6 shrink-0">
-              {integrationsRow1.map((integration) => (
+              {row1.map((integration) => (
                 <div
                   key={`${integration.name}-${setIndex}`}
                   className="shrink-0 px-8 py-6 border border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.02] transition-all duration-300 group"
@@ -88,7 +75,7 @@ export function IntegrationsSection() {
         <div className="flex gap-6 marquee-reverse">
           {[...Array(2)].map((_, setIndex) => (
             <div key={setIndex} className="flex gap-6 shrink-0">
-              {integrationsRow2.map((integration) => (
+              {row2.map((integration) => (
                 <div
                   key={`${integration.name}-reverse-${setIndex}`}
                   className="shrink-0 px-8 py-6 border border-foreground/10 hover:border-foreground/30 hover:bg-foreground/[0.02] transition-all duration-300 group"

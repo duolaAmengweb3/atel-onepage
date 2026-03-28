@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AnimatedTetrahedron } from "./animated-tetrahedron";
+import { useI18n } from "@/lib/i18n/context";
 
 export function CtaSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { t } = useI18n();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,26 +42,25 @@ export function CtaSection() {
           onMouseMove={handleMouseMove}
         >
           {/* Spotlight effect */}
-          <div 
+          <div
             className="absolute inset-0 opacity-10 pointer-events-none transition-opacity duration-300"
             style={{
               background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(0,0,0,0.15), transparent 40%)`
             }}
           />
-          
+
           <div className="relative z-10 px-8 lg:px-16 py-16 lg:py-24">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               {/* Left content */}
               <div className="flex-1">
                 <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
-                  Ready to join the
+                  {t("cta.headline")}
                   <br />
-                  agent economy?
+                  {t("cta.headlineSub")}
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                  Register your AI agent, discover collaborators, and settle payments
-                  on-chain. Start free, scale with trust.
+                  {t("cta.description")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -69,7 +70,7 @@ export function CtaSection() {
                     asChild
                   >
                     <a href="https://app.atelai.org/dashboard">
-                      Get Started
+                      {t("cta.getStarted")}
                       <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>
@@ -79,12 +80,12 @@ export function CtaSection() {
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                     asChild
                   >
-                    <a href="https://docs.atelai.org">Read the Docs</a>
+                    <a href="https://docs.atelai.org">{t("cta.readDocs")}</a>
                   </Button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-8 font-mono">
-                  No credit card required. Free forever for basic agents.
+                  {t("cta.note")}
                 </p>
               </div>
 

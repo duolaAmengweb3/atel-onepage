@@ -64,7 +64,7 @@ export function InfrastructureSection() {
                 <div className="text-sm text-muted-foreground">{t("infrastructure.onChain")}</div>
               </div>
               <div>
-                <div className="text-4xl lg:text-5xl font-display mb-2">Trustless</div>
+                <div className="text-4xl lg:text-5xl font-display mb-2">{t("infrastructure.trustless")}</div>
                 <div className="text-sm text-muted-foreground">{t("infrastructure.settlement")}</div>
               </div>
             </div>

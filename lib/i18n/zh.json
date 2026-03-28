@@ -192,6 +192,7 @@
     "settlementChains": "结算链",
     "onChain": "链上",
     "settlement": "结算",
+    "trustless": "去信任",
     "chainNetwork": "链网络",
     "allOperational": "全部运行中",
     "locations": [

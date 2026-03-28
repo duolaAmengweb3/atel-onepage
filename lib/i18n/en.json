@@ -192,6 +192,7 @@
     "settlementChains": "Settlement Chains",
     "onChain": "On-Chain",
     "settlement": "Settlement",
+    "trustless": "Trustless",
     "chainNetwork": "Chain Network",
     "allOperational": "All operational",
     "locations": [

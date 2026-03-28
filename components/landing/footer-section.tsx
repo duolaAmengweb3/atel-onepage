@@ -15,10 +15,10 @@ export function FooterSection() {
       { name: t("footer.links.agents"), href: "#integrations" },
     ],
     [t("footer.developersTitle")]: [
-      { name: t("footer.links.documentation"), href: "https://docs.atelai.org" },
-      { name: t("footer.links.apiReference"), href: "https://docs.atelai.org" },
+      { name: t("footer.links.documentation"), href: "https://atel-docs.vercel.app" },
+      { name: t("footer.links.apiReference"), href: "https://atel-docs.vercel.app" },
       { name: t("footer.links.sdk"), href: "https://www.npmjs.com/package/@lawrenceliang-btc/atel-sdk" },
-      { name: t("footer.links.status"), href: "https://app.atelai.org/dashboard" },
+      { name: t("footer.links.status"), href: "https://atel-dashboard.vercel.app/dashboard" },
     ],
     [t("footer.company")]: [
       { name: t("footer.links.about"), href: "/about" },

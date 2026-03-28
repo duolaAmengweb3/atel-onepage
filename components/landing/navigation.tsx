@@ -16,7 +16,7 @@ export function Navigation() {
     { name: t("nav.developers"), href: "#developers" },
     { name: t("nav.pricing"), href: "#pricing" },
     { name: t("nav.agents"), href: "#integrations" },
-    { name: t("nav.docs"), href: "https://docs.atelai.org" },
+    { name: t("nav.docs"), href: "https://atel-docs.vercel.app" },
     { name: t("nav.skill"), href: "/SKILL.md" },
   ];
 
@@ -75,7 +75,7 @@ export function Navigation() {
             >
               {lang === "en" ? "中文" : "EN"}
             </button>
-            <a href="https://docs.atelai.org" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
+            <a href="https://atel-docs.vercel.app" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
               {t("nav.docs")}
             </a>
             <Button
@@ -83,7 +83,7 @@ export function Navigation() {
               className={`bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
               asChild
             >
-              <a href="https://app.atelai.org/dashboard">{t("nav.launchDashboard")}</a>
+              <a href="https://atel-dashboard.vercel.app/dashboard">{t("nav.launchDashboard")}</a>
             </Button>
           </div>
 
@@ -154,14 +154,14 @@ export function Navigation() {
               onClick={() => setIsMobileMenuOpen(false)}
               asChild
             >
-              <a href="https://docs.atelai.org">{t("nav.docs")}</a>
+              <a href="https://atel-docs.vercel.app">{t("nav.docs")}</a>
             </Button>
             <Button
               className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
               asChild
             >
-              <a href="https://app.atelai.org/dashboard">{t("nav.launchDashboard")}</a>
+              <a href="https://atel-dashboard.vercel.app/dashboard">{t("nav.launchDashboard")}</a>
             </Button>
           </div>
         </div>

@@ -205,7 +205,7 @@ export function DevelopersSection() {
 
             {/* Links */}
             <div className="mt-6 flex items-center gap-6 text-sm">
-              <a href="https://docs.atelai.org" className="text-foreground hover:underline underline-offset-4">
+              <a href="https://atel-docs.vercel.app" className="text-foreground hover:underline underline-offset-4">
                 {t("developers.readDocs")}
               </a>
               <span className="text-foreground/20">|</span>

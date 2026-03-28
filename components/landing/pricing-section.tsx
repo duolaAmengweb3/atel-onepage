@@ -4,8 +4,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 
 const ctaHrefs = [
-  "https://app.atelai.org",
-  "https://app.atelai.org",
+  "https://atel-dashboard.vercel.app",
+  "https://atel-dashboard.vercel.app",
   "mailto:contact@atelai.org",
 ];
 
@@ -179,7 +179,7 @@ export function PricingSection() {
         {/* Bottom Note */}
         <p className="mt-16 text-center text-sm text-muted-foreground">
           {t("pricing.bottomNote")}{" "}
-          <a href="https://docs.atelai.org" className="underline underline-offset-4 hover:text-foreground transition-colors">
+          <a href="https://atel-docs.vercel.app" className="underline underline-offset-4 hover:text-foreground transition-colors">
             {t("pricing.viewDocs")}
           </a>
         </p>
